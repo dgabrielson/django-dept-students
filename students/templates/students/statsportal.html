@@ -1,0 +1,46 @@
+{% extends "students/__base.html" %}
+
+
+{% block page_title %}StatsPortal Registration{% endblock %}
+
+{% block content_title %}StatsPortal Registration{% endblock %}
+
+
+{% block content %}
+
+    <p>
+        <strong>StatsPortal</strong> is a course management site 
+        which gives you access to everything printed for the course in 
+        electronic form, including the textbook and study guide. 
+        Other electronic resources, such as Stat Tutor and Statistical Applets 
+        can also be found here. 
+    </p>
+
+    <p>
+        <img class="float-right" src="{{ MEDIA_URL }}/statsweb/2011/09/ips7e_statsportal.jpg" alt="IPS7E Electronic Package" width="125">
+        To signup for <strong>StatsPortal</strong>, go to
+        <a href="http://courses.bfwpub.com/ips7e" target="_blank">http://courses.bfwpub.com/ips7e</a>
+        and click “Register”.
+        You will need the code in the <strong>StatsPortal</strong> package 
+        shown at the top right of this page.
+        If you have already taken a statistics course, and you already have a 
+        <strong>StatsPortal</strong> account, you do not need to purchase a 
+        new one (select ``Need to switch courses'').
+        If you cannot switch courses, please bring proof of purchase of your 
+        <strong>StatsPortal</strong> account to your instructor.
+    </p>
+
+    <form action="." method="POST">{% csrf_token %}
+        <table class="table-form">
+            {{ form.as_table }}
+            <tr class="submit-row"><td>
+            <input type="submit" value="Next">
+        </td></tr>
+        </table>
+    </form>
+
+
+
+{% endblock %}
+
+

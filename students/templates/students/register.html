@@ -1,0 +1,119 @@
+{% extends "students/__base.html" %}
+
+{% block html_head %}
+{{ block.super }}
+{% if form %}
+{{ form.media }}
+{% endif %}
+{% endblock %}
+
+
+{% block page_title %}Student Registration{% endblock %}
+
+{% block content_title %}Student Registration{% endblock %}
+
+
+{% block content %}
+    {% if blacklisted_user %}
+        <p>
+            You are logged in with an ICM (International College of Manitoa)
+            user account.
+            You need to claim a personal user account to register.
+            Go to <a href="http://iridium.umanitoba.ca" target="_blank">Iridium</a>
+            and and click &ldquo;Create UMnetID&rdquo; to claim your account.
+            You will need to
+            <a href="{% url 'site-logout' %}?next={% url 'students-register-start' %}">log out</a>
+            and log back in using your your personal user account.
+        </p>
+    {% else %}
+        {% if student.student_registration_set.get_current.exists and not request.GET.reregister %}
+            <p>
+                You are already registered, 
+                or you have not yet completed your honesty declaration.
+                Please choose one the following options:
+            </p>
+            <ul>
+                {% url 'gradebook-main' as link_url %}
+                {% if link_url %}
+                <li>
+                    <a href="{{ link_url }}">
+                        Go to the Gradebook &raquo;
+                    </a>
+                </li>
+                {% endif %}
+                
+                {% url 'statsportal-launch' as link_url %}
+                {% if link_url %}
+                    <li>
+                        <a href="{{ link_url }}">
+                            Go to StatsPortal &raquo;
+                        </a>
+                    </li>
+                {% endif %}
+                
+                {% url 'students-register-start' as link_url %}
+                {% if link_url and registration_open %}
+                    <li>
+                        <a href="{{ link_url }}?reregister=1">
+                            Complete your honesty declaration &raquo;
+                        </a>
+                    </li>
+                {% endif %}
+                
+                
+                {% url 'students-register-start' as link_url %}
+                {% if link_url and registration_open %}
+                    <li>
+                        <a href="{{ link_url }}?reregister=1">
+                            Register for a different course &raquo;
+                        </a>
+                    </li>
+                {% endif %}
+                
+                {% url 'students-iclicker-list' as link_url %}
+                {% if link_url %}
+                    <li>
+                        <a href="{{ link_url }}">
+                            Manage your i&gt;clicker registration &raquo;
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% elif registration_open %}
+
+            <p>
+                You are currently logged in as <strong>{{ request.user.get_full_name }}</strong>.
+                If this is not you, please
+                <a href="{% url 'site-logout' %}?next={% url 'students-register-start' %}">log out now</a>.
+            </p>
+
+            {% if form.check_sections and form.sections %}
+                <form action="." method="POST">{% csrf_token %}
+                    <table class="table-form">
+                        {{ form.as_table }}
+
+                        <tr class="submit-row"><td>
+                            {% if allow_back %}
+                                <a href="{% url 'students.views.register' %}">[ Back ]</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {% endif %}
+                            <input type="submit" value="Next">
+                        </td></tr>
+                    </table>
+                </form>
+            {% else %}
+                <p class="errornote">
+                    There are no sections available for self registration at this time.
+                </p>
+            {% endif %}
+        {% else %}
+            <p class="errornote">
+                Registration is currently closed. <br>
+                Registration opens on the first day of class.
+                Try back later.
+            </p>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,46 @@
+{% extends "students/__base.html" %}
+
+
+{% block page_title %}i&gt;clicker Registration{% endblock %}
+
+{% block content_title %}i&gt;clicker Registration{% endblock %}
+
+
+{% block content %}
+
+    <p>
+         Your clicker ID (or remote ID) is a series of 8 numbers and letters on the white sticker on the bottom of your clicker, just below the i&gt;clicker INSTRUCTIONS located at the back of the remote.
+         NOTE: Your clicker ID may contain the number zero, but will not contain the letter O.
+    </p>
+
+    <p>
+        If you do not yet have your i&gt;clicker, you can return to the
+        <a href="{% url 'students.views.register' %}">registration form</a>
+        at a later time to enter your remote ID.
+        (Just click &ldquo;Next&rdquo; for now.)
+    </p>
+    <form action="{{ app_path }}" method="POST">{% csrf_token %}
+        <table class="table-form">
+            {{ form.as_table }}
+            <tr class="submit-row"><td>
+            <input type="submit" value="Next">
+        </td></tr>
+        </table>
+    </form>
+
+    <p>
+        Throughout the course, extensive use of the i&gt;clicker  classroom 
+        response system will be made in order to enhance your understanding 
+        of the material and promote classroom participation.
+        Note that i&gt;clicker  participation constitutes a portion of your 
+        grade in this course and as such you are required to bring your 
+        i&gt;clicker to each class.
+        <em>
+            It is your responsibilty to ensure your i&gt;clicker is functioning
+            properly, and that you are receiving the correct scores for your
+            i&gt;clicker votes.
+        </em>
+    </p>
+{% endblock %}
+
+

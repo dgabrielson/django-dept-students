@@ -1,0 +1,6 @@
+include LICENSE.txt
+include requirements.txt
+#recursive-include students/static *
+recursive-include students/templates *
+#recursive-include webassign/static *
+recursive-include webassign/templates *

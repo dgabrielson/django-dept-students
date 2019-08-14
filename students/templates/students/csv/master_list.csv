@@ -1,0 +1,2 @@
+{% for object in object_list %}"{{ object.student|addslashes }}","{{ object.student.student_number|addslashes }}","{{ object.section.Section_Name|addslashes }}"
+{% endfor %}

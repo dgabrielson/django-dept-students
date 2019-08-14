@@ -1,0 +1,25 @@
+{% extends 'students/base_detail.html' %}
+
+{# ######################################################### #}
+
+{% block detail_panel_title %}i&gt;clicker Information{% endblock %}
+
+{# ######################################################### #}
+
+{% block detail_header %}{{ object.iclicker_id }}{% endblock %}
+
+{# ######################################################### #}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <span class="divider">&gt;</span>
+    {% include './includes/iclicker/app_breadcrumbs.html' %}
+    {% block app_breadcrumbs %}
+        {% if object %}
+            <span class="divider">&gt;</span>
+            {{ object.iclicker_id }}
+        {% endif %}
+    {% endblock %}
+{% endblock %}
+
+{# ######################################################### #}

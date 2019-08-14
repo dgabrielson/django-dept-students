@@ -1,0 +1,40 @@
+{% extends 'students/iclicker_detail.html' %}
+
+{# ######################################################### #}
+
+{% block detail_panel_title %}i&gt;clicker &mdash; Confirm Removal{% endblock %}
+
+{# ######################################################### #}
+
+{% block detail_panel_class %}panel-danger{% endblock %}
+
+{% block detail_panel_body_content %}
+    {{ block.super }}
+    <p>
+        You should remove your i&gt;clicker registration if you are no
+        longer using this i&gt;clicker in a Statistics course.
+        Removing your i&gt;clicker registration <em>will not</em> remove
+        your i&gt;clicker scores in the gradebook.
+    </p>
+    <form action="." method="POST">
+        {% csrf_token %}
+        {% block form_buttons %}
+            <p>
+                Are you sure you want to remove the i&gt;clicker {{ object.iclicker_id }} registration?
+            </p>
+            <p>
+                <button type="submit" class="btn btn-danger">
+                     {% block primary_button %}Yes, Remove{% endblock %}
+                </button>
+            </p>
+        {% endblock %}
+        <p>
+            <a href="{% url 'students-iclicker-list' %}">
+                &laquo; No thanks, I changed my mind.
+            </a>
+        </p>
+    </form>
+
+{% endblock %}
+
+{# ######################################################### #}

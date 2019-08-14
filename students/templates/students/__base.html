@@ -1,0 +1,36 @@
+{% extends "site_base.html" %}
+
+{# ########################################### #}
+
+{% block html_head %}
+{{ block.super }}
+<link href="{{ STATIC_URL }}css/forms.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{# ########################################### #}
+
+{% block page_title %}INSERT PAGE TITLE{% endblock %}
+
+{# ########################################### #}
+
+{% block page_content_header %}{% block content_title %}INSERT TITLE{% endblock %}{% endblock %}
+{% block page_content_body %}
+
+{% block content %}
+{% endblock %}
+
+
+{% endblock %}
+
+
+{# ########################################### #}
+
+{% block page_right_sidebar %}
+
+{% block fippa_extra_info %}
+{% endblock %}
+
+{{ block.super }}
+{% endblock %}
+
+{# ########################################### #}

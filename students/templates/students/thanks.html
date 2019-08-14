@@ -1,0 +1,25 @@
+{% extends "students/__base.html" %}
+
+
+{% block page_title %}Registration Complete{% endblock %}
+
+{% block content_title %}Registration Complete{% endblock %}
+
+
+{% block content %}
+
+    <p>
+        Thank you for registering for 
+        {{ reg.section.course.name }}{% if reg.section.instructor %}
+            with
+            <a href="{{ reg.section.instructor.get_directory_href }}">{{ reg.section.instructor }}</a>{% endif %}.
+    </p>
+    
+    <p>
+        Please remember to 
+        <a href="{% url 'site-logout' %}?next={% url 'students-register-start' %}">log out</a>,
+        especially if this is a shared computer.
+    </p>
+{% endblock %}
+
+

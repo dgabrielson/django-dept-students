@@ -1,0 +1,8 @@
+REMINDER:
+
+{{ class }} {{ exam|title }}
+{{ dt|date:"l, N j" }} at {{ dt|time:"g:i A" }}
+
+You are writing in room {{ room|safe }}.
+
+Bring your U of M student I.D. card with you.

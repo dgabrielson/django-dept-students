@@ -1,0 +1,17 @@
+{% extends 'students/__base.html' %}
+
+{# ######################################################### #}
+
+{% block page_title %}{% block page_subtitle %}{{ object }}{% endblock %}{% endblock %}
+
+{# ########################################### #}
+
+{% block content_title %}{% block detail_panel_title %}DETAIL HEADER{% endblock %}{% endblock %}
+
+{# ######################################################### #}
+
+{% block content %}
+    {% block detail_panel_body_content %}{% endblock %}
+{% endblock %}
+
+{# ######################################################### #}

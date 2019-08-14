@@ -1,0 +1,30 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+
+{% block object-tools-items %}
+    {# ############################################# #}
+
+    {% if perms.students.change_student %}
+        <li>
+            <a href="{% url 'admin:students_student_change' original.student.pk %}" class="viewsitelink">
+                Student Record
+            </a>
+        </li>
+    {% endif %}
+
+    {# ############################################# #}
+
+    {% if perms.classes.change_section %}
+        <li>
+            <a href="{% url 'admin:classes_section_change' original.section.pk %}" class="viewsitelink">
+                Section Record
+            </a>
+        </li>
+    {% endif %}
+
+    {# ############################################# #}
+
+{{ block.super }}
+{% endblock %}
+

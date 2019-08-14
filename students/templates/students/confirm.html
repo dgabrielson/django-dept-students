@@ -1,0 +1,50 @@
+{% extends 'students/register.html' %}
+
+{% block content %}
+    <p>
+    In order to confirm your registration, please enter the correct CRN for 
+    your course.
+    <strong>
+        You can find the CRN on your instructor information sheet.
+    </strong>
+    (The CRN number is available from 
+    <a href="https://aurora.umanitoba.ca/" target="_blank">Aurora</a>.)
+    </p>
+    <center>
+        <table>
+            <tr>
+                <th align="right">Course</th>
+                <td>{{ section.course.label }}</td>
+            </tr>
+            <tr>
+                <th align="right">Section</th>
+                <td>{{ section.section_name }}</td>
+            </tr>
+            {% if section.instructor %}
+            <tr>
+                <th align="right">Instructor</th>
+                <td>{{ section.instructor }}</td>
+            </tr>
+            {% endif %}
+        </table>
+    </center>
+    <p>
+        If this is not your course, go <a href="%s">back</a> and change it 
+        on the previous page.
+    </p>
+
+    <form action="." method="POST">{% csrf_token %}
+        <table class="table-form">
+            {{ form.as_table }}
+
+            <tr class="submit-row"><td>
+                {% if allow_back %}
+                    <a href="{% url 'students.views.register' %}">[ Back ]</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% endif %}
+                <input type="submit" value="Next">
+            </td></tr>
+        </table>
+    </form>
+
+{% endblock %}

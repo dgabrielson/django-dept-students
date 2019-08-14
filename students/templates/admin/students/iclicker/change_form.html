@@ -1,0 +1,21 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+
+{% block object-tools-items %}
+    {# ############################################# #}
+
+    {% if perms.students.change_student %}
+        <li>
+            <a href="{% url 'admin:students_student_change' original.student.pk %}" class="viewsitelink">
+                Student Record
+            </a>
+        </li>
+    {% endif %}
+
+    {# ############################################# #}
+
+
+{{ block.super }}
+{% endblock %}
+

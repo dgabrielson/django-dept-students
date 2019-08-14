@@ -1,0 +1,44 @@
+{% extends "students/__base.html" %}
+
+
+{% block page_title %}JMP Download{% endblock %}
+
+{% block content_title %}JMP Download{% endblock %}
+
+
+{% block content %}
+
+    <p>
+        <tt>JMP</tt> is a computer program for performing statistical analysis
+        that will be used for homework in your class.
+    </p>
+
+    <p>
+        To download <tt>JMP</tt>, go 
+        <a href="/download/jmp" target="_blank">here</a>.
+    </p>
+    
+    <p>
+        Some frequently asked questions about <tt>JMP</tt> are answered
+        <a href="/faq/statistical-software/" target="_blank">here</a>.
+    </p>
+
+    <form action="." method="POST">{% csrf_token %}
+        <table class="table-form">
+            {{ form.as_table }}
+            <tr class="submit-row"><td>
+            <input type="submit" value="Next">
+        </td></tr>
+        </table>
+    </form>
+
+    <p>
+        <strong>Please note:</strong>
+        The <tt>JMP</tt> download is approxmiately 300 Mb.
+        Please make sure you have a fast internet connection before downloading.
+    </p>
+
+
+{% endblock %}
+
+

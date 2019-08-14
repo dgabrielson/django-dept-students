@@ -1,0 +1,29 @@
+{% extends 'students/iclicker_form.html' %}
+
+{# ######################################################### #}
+
+{% block detail_panel_title %}Register an i&gt;clicker{% endblock %}
+{% block primary_button %}Register &raquo;{% endblock %}
+
+{# ######################################################### #}
+
+{% block detail_panel_body_content %}
+    <p>
+        Register a new i&gt;clicker ID.
+    </p>
+    <p>
+        Your i&gt;clicker ID is 8 characters consisting of numbers (0&mdash;9)
+        and the letters A, B, C, D, E, or F.
+        You can use upper or lowercase letters to register your ID.
+    </p>
+{{ block.super }}
+{% endblock %}
+
+{# ######################################################### #}
+
+{% block app_breadcrumbs %}
+    <span class="divider">&gt;</span>
+    Register
+{% endblock %}
+
+{# ######################################################### #}

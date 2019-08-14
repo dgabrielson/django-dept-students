@@ -1,0 +1,56 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block object-tools-items %}
+    {% if perms.people.change_person %}
+        <li>
+            <a href="{% url 'admin:people_person_change' original.person.pk %}" class="viewsitelink">
+                Person Record
+            </a>
+        </li>
+    {% endif %}
+{{ block.super }}
+{% endblock %}
+
+{% block footer %}
+    <div id="footer">
+        <div class="inline-group">
+            <div class="tabular inline-related">
+                <fieldset class="module module-aligned">
+                <h2>Student history</h2>
+    
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Creation time
+                            </th>
+                            <th>
+                                Annotation
+                            </th>
+                            <th>
+                                Message
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for history in original.history_set.all %}
+                        <tr class="{% cycle 'row1' 'row2' %}">
+                            <td>
+                                {{ history.created }}
+                            </td>
+                            <td>
+                                {{ history.annotation }}
+                            </td>
+                            <td>
+                                {{ history.message }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+{% endblock %}

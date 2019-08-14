@@ -1,0 +1,79 @@
+{% extends 'students/base_list.html' %}
+
+{# ######################################################### #}
+
+{% block page_subtitle %}i&gt;clicker{% endblock %}
+{% block list_header %}i&gt;clicker{% endblock %}
+
+{# ######################################################### #}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <span class="divider">&gt;</span>
+    {% include './includes/iclicker/app_breadcrumbs.html' %}
+    {% block app_breadcrumbs %}
+    {% endblock %}
+{% endblock %}
+
+{# ######################################################### #}
+
+{% block object_list %}
+    {% if student %}
+        <ul class="pagenav">
+            <li>
+                <a href="{% url 'students-iclicker-create' %}" class="btn btn-default" role="button">
+                    Register an i&gt;clicker
+                </a>
+            </li>
+        </ul>
+    {% endif %}
+
+    {% if not student %}
+        <p>
+            <strong>Sorry</strong>, but we cannot find any student
+            information for you.
+            You cannot register an i&gt;clicker until your student
+            information has been uploaded by your instructor.
+        </p>
+    {% else %}
+        {% if object_list.count > 1 %}
+            <p>
+                Here is the list of i&gt;clickers you have registered to you:
+            </p>
+        {% elif object_list.count == 1 %}
+            <p>
+                Here is the i&gt;clicker you have registered:
+            </p>
+        {% endif %}
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Registered i&gt;clicker{{ object_list.count|pluralize }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td>&nbsp;
+                            {{ object.iclicker_id }}
+                        </td>
+                        <td>
+                            <a href="{% url 'students-iclicker-delete' pk=object.pk %}" class="btn btn-danger" role="button">
+                                Remove &raquo;
+                            </a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="2">
+                        You have no i&gt;clickers registered.
+                    </td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}
+
+{# ######################################################### #}

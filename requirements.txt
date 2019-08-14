@@ -1,0 +1,5 @@
+django-dept-classes
+django-dept-directory
+python-spreadsheet
+
+django-formtools

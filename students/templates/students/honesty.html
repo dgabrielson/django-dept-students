@@ -1,0 +1,51 @@
+{% extends 'students/__base.html' %}
+{% load markup %}
+
+{% block page_title %}Honesty Declaration{% endblock %}
+
+{% block content_title %}Honesty Declaration{% endblock %}
+
+
+{% block content %}
+    <p>
+        This course requires you to complete the online honesty declaration form.
+    </p>
+
+    <form action="." method="POST">{% csrf_token %}
+        <table class="table-form">
+            {% for field in form %}
+            <tr>
+                <td>{{ field }}</td>
+                <td>
+                   {% if field.errors %}
+                        <ul class="errorlist" id="errors-{{ field.html_name }}">
+                            {% for error in field.errors %}
+                                <li>{{ error }}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {{ field.label|restructuredtext }}
+                    {% if field.help_text %}<br>
+                    <span id="help-text-{{ field.html_name }}" class="help">{{ field.help_text }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+            <tr class="submit-row"><td></td><td>
+                <input type="submit" value="Next">
+            </td></tr>
+        </table>
+    </form>
+    
+    <p>
+        (*)
+        Penalties that may apply, as provided for under the 
+        University of Manitoba's
+        <a href="http://umanitoba.ca/admin/governance/governing_documents/students/868.htm" target="_blank">Student Discipline Bylaw</a>,
+        range from a grade of zero for the assignment, 
+        failure in the course, 
+        to expulsion from the University.
+    </p>
+
+{% endblock %}

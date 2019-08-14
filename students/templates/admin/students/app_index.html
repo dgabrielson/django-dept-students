@@ -1,0 +1,46 @@
+{% extends 'admin/app_index.html' %}
+{% load i18n static %}
+
+{# ########################################################## #}
+
+{% block sidebar %}
+{{ block.super }}
+
+<div id="content-related">
+    <div class="module">
+        <h2>{% trans 'Application Links' %}</h2>
+            <ul class="actionlist">
+                {% url 'admin:students_classlist_upload' as link_url %}
+                {% if link_url %}
+                    <li class="addlink">
+                        <a href="{{ link_url }}">
+                            {% trans 'Upload classlist file' %}
+                        </a>
+                    </li>
+                {% endif %}
+                {% url 'admin:students_report_upload' as link_url %}
+                {% if link_url %}
+                    <li class="addlink">
+                        <a href="{{ link_url }}">
+                            {% trans 'Upload report file' %}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        <h3>{% trans 'UofM links' %}</h3>
+
+            <ul class="actionlist">
+                <li class="addlink">
+                    <a class="golink" href="https://aurora.umanitoba.ca/">
+                        {% trans 'Aurora' %} &rarr;
+                    </a>
+                </li>
+            </ul>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{# ########################################################## #}

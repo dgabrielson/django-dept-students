@@ -1,0 +1,41 @@
+{% extends 'students/iclicker_detail.html' %}
+
+{# ######################################################### #}
+
+{% block detail_panel_title %}i&gt;clicker Information{% endblock %}
+
+{# ######################################################### #}
+
+{% block detail_panel_body_content %}
+    {{ block.super }}
+
+{% comment %}
+    <form action="." method="POST">
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+        {% block form_buttons %}
+            <button type="submit" class="btn btn-primary">
+                 {% block primary_button %}Submit &raquo;{% endblock %}
+            </button>
+        {% endblock %}
+    </form>
+{% endcomment %}
+
+<form enctype="multipart/form-data" action="" method="POST" class="form">{% csrf_token %}
+    <div class="form-container">
+        <table class="table-form">
+            {% include 'includes/form.html' %}
+            <tr class="visual-break form-row">
+                <td class="left"></td>
+                <td class="right">
+                    <button type="submit" class="btn btn-primary btn-save">
+                         {% block primary_button %}Submit &raquo;{% endblock %}
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}
+
+{# ######################################################### #}

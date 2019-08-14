@@ -1,0 +1,9 @@
+
+{% url 'students-iclicker-list' as top_url %}
+{% if top_url %}
+    {% if top_url != request.path %}
+        <a href="{{ top_url }}">i&gt;clicker</a>
+    {% else %}
+        i&gt;clicker
+    {% endif %}
+{% endif %}
